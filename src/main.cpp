@@ -1,12 +1,13 @@
-//
-// Created by dudud on 05/04/2022.
-//
 
 #include <gtest/gtest.h>
-#include "main.h"
+#include "dataReader.h"
+
+#define TRUCK_PATH "data/input/carrinhas.txt"
+#define REQUEST_PATH "data/input/encomendas.txt"
 
 int main(){
-    std::cout << "Hello World" << std::endl;
+    dataReader data(TRUCK_PATH,REQUEST_PATH);
+    data.readFixed(10);
     return 0;
 }
 
