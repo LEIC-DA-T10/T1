@@ -237,7 +237,3 @@ bool dataIO::checkNumberRequests() {
     numberRequests = counter-1;
     return true;
 }
-
-
-
-
