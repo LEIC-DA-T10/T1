@@ -7,10 +7,12 @@
 
 int main(){
     dataIO data(TRUCK_PATH, REQUEST_PATH);
-    data.readRequestsFixed(0, 10);
-    data.readTrucksFixed(0,10);
-    data.printRequests();
+
+    data.readTrucksRandom(1);
+    data.readRequestsRandom(1);
     data.printTrucks();
+    data.printRequests();
+
 
     return 0;
 }
