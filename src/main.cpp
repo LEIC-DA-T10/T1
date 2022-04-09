@@ -3,8 +3,6 @@
 #include "dataIO.h"
 #include "applicationController.h"
 
-#define TRUCK_PATH "../data/input/carrinhas.txt"
-#define REQUEST_PATH "../data/input/encomendas.txt"
 
 using namespace std;
 
@@ -18,17 +16,19 @@ void printMainMenu(){
     cout << "4 - Compute Scenario 2" << endl;
     cout << "5 - Compute Scenario 3" << endl;
     cout << "---- Configuration ----" << endl;
-    cout << "6 - Export output to file ? (default = no) (y/s)";
+    cout << "6 - Export output to file ? (default = no) (y/s)" << endl;
 }
 
 
 int main(){
-    dataIO data(TRUCK_PATH, REQUEST_PATH);
     applicationController controller;
     int state;
     while(true){
         printMainMenu();
-        controller.run();
+        cin >> state;
+        controller.setState(state);
+        if(!controller.run()) break;
     }
+    cout << "Exiting application, Goodbye! " << endl;
     return 0;
 }

@@ -2,9 +2,26 @@
 // Created by dudud on 06/04/2022.
 //
 
+#include <set>
+#include <random>
 #include "dataIO.h"
 
 using namespace std;
+
+
+
+set<unsigned int> generateRandomSet(unsigned int distinct,unsigned int max){
+    set<unsigned int> numbers;
+
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_real_distribution<double> dist(1, max);
+
+    while (numbers.size() < distinct) {
+        numbers.insert((unsigned int) dist(mt));
+    }
+    return numbers;
+}
 
 
 vector<string> split (const string& s, const string& delimiter) {
@@ -41,6 +58,9 @@ bool dataIO::readTrucksFixed(int start, int finish) {
         getline(file,stringBuffer);
     }
 
+    if(numberTrucks == 0) checkNumberTrucks();
+
+
     while(getline(file,stringBuffer) && counter < (finish-start)){
         vector<string> splitString = split(stringBuffer," ");
 
@@ -65,6 +85,8 @@ bool dataIO::readRequestsFixed(int start, int finish) {
     file.open(requestPath, ios::in);
     if(!file) return false;
 
+    if(numberRequests == 0) checkNumberRequests();
+
     for(int i = 0; i <= start; i++){
         getline(file,stringBuffer);
     }
@@ -88,11 +110,60 @@ bool dataIO::readRequestsFixed(int start, int finish) {
 
 
 bool dataIO::readTrucksRandom(int n) {
-    return false;
+    fstream file;
+    string stringBuffer;
+    int counter = 0;
+
+    file.open(truckPath, ios::in);
+    if(!file) return false;
+
+    if(numberTrucks == 0) checkNumberTrucks();
+    set<unsigned int> randomIndexes = generateRandomSet(n,numberTrucks);
+
+    while(getline(file,stringBuffer) && counter < numberTrucks){
+        if(randomIndexes.find(counter) != randomIndexes.end()){
+            vector<string> splitString = split(stringBuffer," ");
+
+            truck truckBuffer;
+            truckBuffer.maxVolume = stoi(splitString.at(0));
+            truckBuffer.maxWeight = stoi(splitString.at(1));
+            truckBuffer.cost = stoi(splitString.at(2));
+
+            trucks.push_back(truckBuffer);
+        }
+        counter++;
+    }
+
+    return true;
 }
 
 bool dataIO::readRequestsRandom(int n) {
-    return false;
+    fstream file;
+    string stringBuffer;
+    int counter = 0;
+
+    file.open(requestPath, ios::in);
+    if(!file) return false;
+
+    if(numberRequests == 0) checkNumberRequests();
+    set<unsigned int> randomIndexes = generateRandomSet(n,numberRequests);
+
+    while(getline(file,stringBuffer) && counter < numberRequests){
+        if(randomIndexes.find(counter) != randomIndexes.end()){
+            vector<string> splitString = split(stringBuffer," ");
+
+            request requestBuffer;
+            requestBuffer.volume = stoi(splitString.at(0));
+            requestBuffer.weight = stoi(splitString.at(1));
+            requestBuffer.reward = stoi(splitString.at(2));
+            requestBuffer.duration = stoi(splitString.at(3));
+
+            requests.push_back(requestBuffer);
+        }
+        counter++;
+    }
+
+    return true;
 }
 
 
@@ -138,7 +209,17 @@ void dataIO::printTrucks() {
 }
 
 bool dataIO::checkNumberTrucks() {
+    fstream file;
+    string stringBuffer;
+    int counter = 0;
 
+    file.open(truckPath, ios::in);
+    if(!file) return false;
+
+    while(getline(file,stringBuffer)){
+        counter++;
+    }
+    numberTrucks = counter-1;
     return true;
 }
 
@@ -150,9 +231,9 @@ bool dataIO::checkNumberRequests() {
     file.open(requestPath, ios::in);
     if(!file) return false;
 
+    while(getline(file,stringBuffer)){
+        counter++;
+    }
+    numberRequests = counter-1;
     return true;
 }
-
-
-
-
