@@ -1,5 +1,5 @@
 //
-// Created by dudud on 06/04/2022.
+// Created by Eduardo Correia on 06/04/2022.
 //
 
 #include <set>
@@ -44,6 +44,8 @@ dataIO::dataIO(const char* truckPath, const char* requestPath) {
     numberRequests = 0;
     this->truckPath = truckPath;
     this->requestPath = requestPath;
+    checkNumberRequests();
+    checkNumberTrucks();
 }
 
 bool dataIO::readTrucksFixed(int start, int finish) {
@@ -58,8 +60,8 @@ bool dataIO::readTrucksFixed(int start, int finish) {
         getline(file,stringBuffer);
     }
 
-    if(numberTrucks == 0) checkNumberTrucks();
-
+    //TODO clear trucks correctly
+    if(!trucks.empty()) trucks.clear();
 
     while(getline(file,stringBuffer) && counter < (finish-start)){
         vector<string> splitString = split(stringBuffer," ");
@@ -85,11 +87,11 @@ bool dataIO::readRequestsFixed(int start, int finish) {
     file.open(requestPath, ios::in);
     if(!file) return false;
 
-    if(numberRequests == 0) checkNumberRequests();
-
     for(int i = 0; i <= start; i++){
         getline(file,stringBuffer);
     }
+
+    if(!requests.empty()) requests.clear();
 
     while(getline(file,stringBuffer) && counter < (finish-start)){
         vector<string> splitString = split(stringBuffer," ");
@@ -117,7 +119,8 @@ bool dataIO::readTrucksRandom(int n) {
     file.open(truckPath, ios::in);
     if(!file) return false;
 
-    if(numberTrucks == 0) checkNumberTrucks();
+    //TODO clear trucks correctly
+    if(!trucks.empty()) trucks.clear();
     set<unsigned int> randomIndexes = generateRandomSet(n,numberTrucks);
 
     while(getline(file,stringBuffer) && counter < numberTrucks){
@@ -145,7 +148,7 @@ bool dataIO::readRequestsRandom(int n) {
     file.open(requestPath, ios::in);
     if(!file) return false;
 
-    if(numberRequests == 0) checkNumberRequests();
+    if(!requests.empty()) requests.clear();
     set<unsigned int> randomIndexes = generateRandomSet(n,numberRequests);
 
     while(getline(file,stringBuffer) && counter < numberRequests){
@@ -191,49 +194,84 @@ const char *dataIO::getRequestPath() {
     return requestPath;
 }
 
-void dataIO::printRequests() {
-    for (auto request : requests){
-        std::cout << request.volume << " ";
-        std::cout << request.weight << " ";
-        std::cout << request.reward << " ";
-        std::cout << request.duration << " " << std::endl;
+void dataIO::printRequests(char answer) {
+    fstream file;
+    if(answer == 'y'){
+        file.open(REQUEST_PRINT_PATH, ios::out);
+        if(file) file << "volume peso recompensa duração(s) "<< endl;
     }
+    for (auto request : requests){
+        if(file){
+            file << request.volume << " ";
+            file << request.weight << " ";
+            file << request.reward << " ";
+            file << request.duration << " " << std::endl;
+        }
+        else{
+            std::cout << request.volume << " ";
+            std::cout << request.weight << " ";
+            std::cout << request.reward << " ";
+            std::cout << request.duration << " " << std::endl;
+        }
+    }
+    if(file) std::cout << "Ficheiro criado com sucesso em : " << REQUEST_PRINT_PATH << endl;
+    std::cout << "----" << endl;
 }
 
-void dataIO::printTrucks() {
-    for (auto truck : trucks){
-        std::cout << truck.maxVolume << " ";
-        std::cout << truck.maxWeight << " ";
-        std::cout << truck.cost << " " << endl;
+void dataIO::printTrucks(char answer) {
+    fstream file;
+    if(answer == 'y'){
+        file.open(TRUCK_PRINT_PATH, ios::out);
+        if(file) file << "volMax pesoMax custo" << endl;
     }
+    for (auto truck : trucks){
+        if(file){
+            file << truck.maxVolume << " ";
+            file << truck.maxWeight << " ";
+            file << truck.cost << " " << endl;
+        }
+        else{
+            std::cout << truck.maxVolume << " ";
+            std::cout << truck.maxWeight << " ";
+            std::cout << truck.cost << " " << endl;
+        }
+    }
+    if(file) std::cout << "Ficheiro criado com sucesso em : " << TRUCK_PRINT_PATH << endl;
+    std::cout << "----" << endl;
 }
 
 bool dataIO::checkNumberTrucks() {
-    fstream file;
-    string stringBuffer;
-    int counter = 0;
+    if(numberTrucks == 0){
+        fstream file;
+        string stringBuffer;
+        int counter = 0;
 
-    file.open(truckPath, ios::in);
-    if(!file) return false;
+        file.open(truckPath, ios::in);
+        if(!file) return false;
 
-    while(getline(file,stringBuffer)){
-        counter++;
+        while(getline(file,stringBuffer)){
+            counter++;
+        }
+        numberTrucks = counter-1;
+        return true;
     }
-    numberTrucks = counter-1;
-    return true;
+    return false;
 }
 
 bool dataIO::checkNumberRequests() {
-    fstream file;
-    string stringBuffer;
-    int counter = 0;
+    if(numberRequests == 0){
+        fstream file;
+        string stringBuffer;
+        int counter = 0;
 
-    file.open(requestPath, ios::in);
-    if(!file) return false;
+        file.open(requestPath, ios::in);
+        if(!file) return false;
 
-    while(getline(file,stringBuffer)){
-        counter++;
+        while(getline(file,stringBuffer)){
+            counter++;
+        }
+        numberRequests = counter-1;
+        return true;
     }
-    numberRequests = counter-1;
-    return true;
+    return false;
 }

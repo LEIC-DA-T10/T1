@@ -9,6 +9,10 @@
 #include <cstring>
 
 
+#define TRUCK_PRINT_PATH "../data/output/current_trucks.txt"
+#define REQUEST_PRINT_PATH "../data/output/current_requests.txt"
+
+
 
 class dataIO {
 private:
@@ -30,8 +34,8 @@ public:
     std::vector<truck> getTrucks();
     const char* getTruckPath();
     const char* getRequestPath();
-    void printRequests();
-    void printTrucks();
+    void printRequests(char answer);
+    void printTrucks(char answer);
     bool checkNumberTrucks();
     bool checkNumberRequests();
 };
