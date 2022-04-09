@@ -8,6 +8,7 @@ struct request{
     unsigned int weight;
     unsigned int volume;
     unsigned int reward;
+    unsigned int duration;
 };
 
 struct truck{
