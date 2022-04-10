@@ -1,5 +1,6 @@
 //
 // Created by Eduardo Correia on 09/04/2022.
+// Developed by José Carvalho
 //
 
 #ifndef DA_T1_THIRDSCENARIO_H
