@@ -9,6 +9,5 @@ secondScenario::secondScenario(vector<request> requests, vector<truck> trucks) :
 
 //Todo create second algorithm
 void secondScenario::compute() {
-
 }
 
