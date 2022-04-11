@@ -5,7 +5,9 @@
 
 #include "thirdScenario.h"
 
-thirdScenario::thirdScenario(vector<request> requests, vector<truck> trucks) : abstractAlgorithm(requests, trucks){
+thirdScenario::thirdScenario(const vector<request>& requests1, const vector<truck>& trucks1) : abstractAlgorithm(requests1, trucks1){
+    requests = requests1;
+    trucks = trucks1;
     if (trucks.size() > 1)
         cout << "---- WARNING : MORE THAN 1 TRUCK PROVIDED ONLY THE FIRST WILL BE CONSIDERED ----" << endl;
 
@@ -32,7 +34,7 @@ void thirdScenario::printStats(){
     cout << " |--> Deliveries : " << endl;
     cout << " |        Delivered " << nReq << " request(s)            " << endl;
     if (requests.size() - nReq == 0){
-        cout << " |        Rejected none" << endl;
+        cout << " |        Rejected None" << endl;
     }else
         cout << " |        Rejected " << requests.size() - nReq << " request(s)" << endl;
     cout << " |--> Balance: " << endl;

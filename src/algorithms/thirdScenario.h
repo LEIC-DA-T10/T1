@@ -17,6 +17,10 @@
 class thirdScenario : abstractAlgorithm{
 private:
     truck express;
+    vector<request> requests;
+    vector<truck> trucks;
+
+
     unsigned int usedTime = 0;
     unsigned int income = 0;
     const unsigned int timeFrame = 28800;
@@ -24,7 +28,7 @@ private:
     vector<request> deliveryList;
 
 public:
-    thirdScenario(vector<request> requests, vector<truck> trucks);
+    thirdScenario(const vector<request>& requests, const vector<truck>& trucks);
     void compute() override;
     bool isDeliverable(int i ) const;
     void deliver(request &request);
