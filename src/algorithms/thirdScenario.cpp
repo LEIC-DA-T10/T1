@@ -36,14 +36,13 @@ void thirdScenario::printStats(){
     cout << " |        Truck Cost: " <<express.cost << "$"<< endl;
     cout << " |--> Deliveries: " << endl;
 
-    cout << " |        Delivered: " << deliPerc << "%" << endl;
-
+    cout << " |        Delivered: " << deliPerc << "%  (" <<nReq<<")"<< endl;
 
     if (requests.size() - nReq == 0){
         cout << " |        Rejected 0%" << endl;
     }else
         cout << " |        Rejected " << 100 - deliPerc << "%" << endl;
-    cout << " |        Average Time per Delivery "<< avgTime << " s" << endl;
+    cout << " |        Average Time per Delivery: "<< ((double)avgTime/(double)60 +((int)avgTime % 60))<< " min -----" <<usedTime <<endl;
     cout << " |--> Balance: " << endl;
     cout << " |       Gains from Deliveries: " << income << "$" << endl;
     cout << " |       Total profit " <<income - express.cost<< "$"<< endl;
@@ -55,9 +54,6 @@ void thirdScenario::printStats(){
     if(answer == 'y')
         for (int i = 0 ; i < deliveryList.size(); i++)
             cout << "[" <<i+1<<"] "<< deliveryList.at(i).weight<<"Kg "<< deliveryList.at(i).volume <<"m3 " << deliveryList.at(i).reward<<"$ "<<deliveryList.at(i).duration <<" s"<< endl;
-
-
-
 }
 
 bool thirdScenario::lDeliveryTime(const request &a, const request &b) {
