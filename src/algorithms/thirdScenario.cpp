@@ -34,7 +34,7 @@ void thirdScenario::printStats(){
     cout << " |        Truck Maximum Weight: " <<express.maxWeight << "Kg" << endl;
     cout << " |        Truck Maximum Volume: " <<express.maxVolume << "m3" <<endl;
     cout << " |        Truck Cost: " <<express.cost << "$"<< endl;
-    cout << " |--> Deliveries : " << endl;
+    cout << " |--> Deliveries: " << endl;
 
     cout << " |        Delivered: " << deliPerc << "%" << endl;
 
