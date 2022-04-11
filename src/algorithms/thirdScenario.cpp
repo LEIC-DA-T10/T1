@@ -26,20 +26,28 @@ void thirdScenario::compute() {
 }
 
 void thirdScenario::printStats(){
+    auto deliPerc = (double)(((double)nReq / (double)requests.size()) * (double)100.0);
+    double avgTime = usedTime/nReq;
+
     cout << "-*----------------------------------------------------*-" << endl;
     cout << " |--> Truck Details: " << endl;
-    cout << " |        Truck Maximum Weight " <<express.maxWeight << "Kg" << endl;
-    cout << " |        Truck Maximum Volume " <<express.maxVolume << "m3" <<endl;
-    cout << " |        Truck Cost " <<express.cost << "$"<< endl;
+    cout << " |        Truck Maximum Weight: " <<express.maxWeight << "Kg" << endl;
+    cout << " |        Truck Maximum Volume: " <<express.maxVolume << "m3" <<endl;
+    cout << " |        Truck Cost: " <<express.cost << "$"<< endl;
     cout << " |--> Deliveries : " << endl;
-    cout << " |        Delivered " << nReq << " request(s)            " << endl;
+
+    cout << " |        Delivered: " << deliPerc << "%" << endl;
+
+
     if (requests.size() - nReq == 0){
-        cout << " |        Rejected None" << endl;
+        cout << " |        Rejected 0%" << endl;
     }else
-        cout << " |        Rejected " << requests.size() - nReq << " request(s)" << endl;
+        cout << " |        Rejected " << 100 - deliPerc << "%" << endl;
+    cout << " |        Average Time per Delivery "<< avgTime << " s" << endl;
     cout << " |--> Balance: " << endl;
     cout << " |       Gains from Deliveries: " << income << "$" << endl;
     cout << " |       Total profit " <<income - express.cost<< "$"<< endl;
+
     cout << "-*----------------------------------------------------*-" << endl;
     cout << "    Do you want to see the request details? (y/n)" << endl;
     char answer;
