@@ -9,8 +9,23 @@
 #include "../abstractAlgorithm.h"
 
 class secondScenario : abstractAlgorithm{
+private:
+    vector<request> sortedRequests;
+    vector<truck> sortedTrucks;
+    vector<truck> weightOutput;
+    vector<truck> volumeOutput;
+    vector<truck> weightToVolumeOutput;
+    static bool truckWeightToCost(const truck &a, const truck &b);
+    static bool requestWeightToReward(const request &a, const request &b);
+    static void printTrucks(const vector<truck> &trucks);
+    static void printRequests(const vector<request> &requests);
+    int computeByWeight();
+    unsigned int computeByVolume();
+    unsigned int computeByWeightToVolume();
+    static bool checkAndInsert(request requestToInsert, truck &truckToInsert);
+    static void incrementTruckIndex(unsigned int &index, unsigned int max);
 public:
-    secondScenario(vector<request> requests, vector<truck> trucks);
+    secondScenario(const vector<request>& requests, const vector<truck>& trucks);
     void compute() override;
 };
 

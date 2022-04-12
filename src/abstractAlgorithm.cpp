@@ -4,7 +4,7 @@
 
 #include "abstractAlgorithm.h"
 
-abstractAlgorithm::abstractAlgorithm(vector<request> requests, vector<truck> trucks) {
+abstractAlgorithm::abstractAlgorithm(const vector<request>& requests,const vector<truck>& trucks) {
     this->requests = requests;
     this->trucks = trucks;
 }
