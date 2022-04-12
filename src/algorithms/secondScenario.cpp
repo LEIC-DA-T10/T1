@@ -2,13 +2,21 @@
 // Created by Eduardo Correia on 09/04/2022.
 //
 
+
 #include "secondScenario.h"
 
 void secondScenario::compute() {
     unsigned int results[3];
-    unsigned int maximumValue = getMax3(results[0] = computeByWeight(),results[1] = computeByVolume(),results[2] = computeByWeight());
+
+    auto start = std::chrono::system_clock::now();
+    unsigned int maximumValue = getMax3(results[0] = computeByWeight(),results[1] = computeByVolume(),results[2] = computeByWeightToVolume());
+    auto end = std::chrono::system_clock::now();
+
+    std::chrono::duration<double> elapsed_seconds = end-start;
+    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
 
     printResult(maximumValue);
+    printComputationTime(elapsed_seconds,end_time);
 }
 
 secondScenario::secondScenario(const vector<request>& requests, const vector<truck>& trucks) : abstractAlgorithm(requests, trucks) {
@@ -211,6 +219,14 @@ void secondScenario::printResult(unsigned int maximumValue) {
     cout << " |--> Balance: " << endl;
     cout << " |        Truck Cost: " << calculateCost(outputTrucks[bestScenario]) << "$" << endl;
     cout << " |        Total profit: " << maximumValue << "$" << endl;
+    cout << "-*----------------------------------------------------*-" << endl;
+}
+
+void secondScenario::printComputationTime(chrono::duration<double> elapsed_seconds, time_t end_time) {
+    cout << "-*-------------  Computation Time ------------------*-" << endl;
+    cout << " |--> Time Details: " << endl;
+    cout << " |        Elapsed Time: " << elapsed_seconds.count() << "s" << endl;
+    cout << " |        Finished Computation At: " << std::ctime(&end_time);
     cout << "-*----------------------------------------------------*-" << endl;
 }
 

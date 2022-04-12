@@ -10,6 +10,7 @@
 #include <iostream>
 #include <algorithm>
 #include <queue>
+#include <chrono>
 
 class secondScenario : abstractAlgorithm{
 private:
@@ -34,6 +35,7 @@ private:
     static unsigned int calculateCost(const vector<truck> &trucks);
     static unsigned int numberOfRequests(const vector<truck> &trucks);
     void printResult(unsigned int);
+    static void printComputationTime(chrono::duration<double> elapsed_seconds,time_t end_time);
 public:
     secondScenario(const vector<request>& requests, const vector<truck>& trucks);
     void compute() override;
