@@ -17,13 +17,15 @@ private:
     vector<truck> weightToVolumeOutput;
     static bool truckWeightToCost(const truck &a, const truck &b);
     static bool requestWeightToReward(const request &a, const request &b);
+    static bool truckVolumeToCost(const truck &a, const truck &b);
+    static bool requestVolumeToReward(const request &a, const request &b);
     static void printTrucks(const vector<truck> &trucks);
     static void printRequests(const vector<request> &requests);
     int computeByWeight();
     unsigned int computeByVolume();
     unsigned int computeByWeightToVolume();
     static bool checkAndInsert(request requestToInsert, truck &truckToInsert);
-    static void incrementTruckIndex(unsigned int &index, unsigned int max);
+    static int calculateProfit(vector<truck> &trucks);
 public:
     secondScenario(const vector<request>& requests, const vector<truck>& trucks);
     void compute() override;

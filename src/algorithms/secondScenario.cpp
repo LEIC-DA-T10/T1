@@ -29,6 +29,16 @@ bool secondScenario::truckWeightToCost(const truck &a, const truck &b){
     return ((double)a.maxWeight/a.cost) > ((double)b.maxWeight/b.cost);
 }
 
+//Sort requests by biggest weight to reward ratio
+bool secondScenario::requestVolumeToReward(const request &a, const request &b){
+    return ((double)a.volume*a.reward) > ((double)b.volume*b.reward);
+}
+
+//Sort trucks by biggest weight to cost ratio
+bool secondScenario::truckVolumeToCost(const truck &a, const truck &b){
+    return ((double)a.maxVolume/a.cost) > ((double)b.maxVolume/b.cost);
+}
+
 secondScenario::secondScenario(const vector<request>& requests, const vector<truck>& trucks) : abstractAlgorithm(requests, trucks) {
     sortedRequests = requests;
     sortedTrucks = trucks;
@@ -38,6 +48,7 @@ secondScenario::secondScenario(const vector<request>& requests, const vector<tru
 void secondScenario::compute() {
     cout << "!----------------------!" << endl;
     cout << computeByWeight() << endl;
+    cout << computeByVolume() << endl;
     cout << "!----------------------!" << endl;
 }
 
@@ -46,8 +57,6 @@ int secondScenario::computeByWeight() {
 
     std::queue<request> requestQueue;
     unsigned int truckIndex = 0;
-    unsigned int cost = 0;
-    int profit = 0;
 
     //Sort requests by weight * reward (higher first), and sort trucks by weight/cost (higher first)
     std::sort(sortedRequests.begin(), sortedRequests.end(), requestWeightToReward);
@@ -60,17 +69,15 @@ int secondScenario::computeByWeight() {
 
     while(!requestQueue.empty()){
         request currentRequest = requestQueue.front();
-        for(unsigned int i = truckIndex; i < weightOutput.size(); i++){
-            if(checkAndInsert(currentRequest,weightOutput.at(i))){
-                profit += (int)currentRequest.reward;
-                break;
-            }
+        if(!checkAndInsert(currentRequest,weightOutput.at(truckIndex))){
+            truckIndex++;
+            if(truckIndex >= weightOutput.size()) break;
         }
-        incrementTruckIndex(truckIndex,weightOutput.size());
         requestQueue.pop();
     }
 
-    return profit;
+    return calculateProfit(weightOutput);
+
 }
 
 
@@ -84,18 +91,56 @@ bool secondScenario::checkAndInsert(request requestToInsert, truck &truckToInser
     return false;
 }
 
-void secondScenario::incrementTruckIndex(unsigned int &index, unsigned int max) {
-    index++;
-    if(index >= max) index = 0;
-}
-
-
 unsigned int secondScenario::computeByVolume() {
-    return 0;
+    std::queue<request> requestQueue;
+    unsigned int truckIndex = 0;
+
+    //Sort requests by weight * reward (higher first), and sort trucks by weight/cost (higher first)
+    std::sort(sortedRequests.begin(), sortedRequests.end(), requestVolumeToReward);
+    std::sort(sortedTrucks.begin(), sortedTrucks.end(), truckVolumeToCost);
+    volumeOutput = sortedTrucks;
+
+    //Insert requests into a request queue
+    for(auto request : sortedRequests)
+        requestQueue.push(request);
+
+    while(!requestQueue.empty()){
+        request currentRequest = requestQueue.front();
+        if(!checkAndInsert(currentRequest,volumeOutput.at(truckIndex))){
+            truckIndex++;
+            if(truckIndex >= volumeOutput.size()) break;
+        }
+        requestQueue.pop();
+    }
+
+    return calculateProfit(volumeOutput);
 }
 
 unsigned int secondScenario::computeByWeightToVolume() {
     return 0;
+}
+
+int secondScenario::calculateProfit(vector<truck> &trucks) {
+    int profit = 0; int truckCounter = 0;
+    vector<int> trucksToRemove;
+    for(const auto& truck : trucks){
+        int truckReward = 0;
+        for(auto request : truck.truckLoad){
+            truckReward += (int)request.reward;
+        }
+        truckReward -= (int)truck.cost;
+
+        if(truckReward < 0) trucksToRemove.push_back(truckCounter);
+        else profit += truckReward;
+    }
+    //Removing un-profitable trucks.
+    for(auto index : trucksToRemove){
+        truck &truck = trucks.at(index);
+        truck.truckLoad.clear();
+        trucks.erase(trucks.begin()+index);
+    }
+
+    return profit;
 }
 
 
