@@ -223,7 +223,7 @@ void secondScenario::printResult(unsigned int maximumValue) {
 }
 
 void secondScenario::printComputationTime(chrono::duration<double> elapsed_seconds, time_t end_time) {
-    cout << "-*-------------  Computation Time ------------------*-" << endl;
+    cout << "-*-------------  Computation Time --------------------*-" << endl;
     cout << " |--> Time Details: " << endl;
     cout << " |        Elapsed Time: " << elapsed_seconds.count() << "s" << endl;
     cout << " |        Finished Computation At: " << std::ctime(&end_time);
