@@ -46,7 +46,7 @@ void firstScenario::compute() {
 
                     break;
                 } else{
-                    if(!isNegative(van->availableWeight, item->weight)){
+                    if(!isNegative(*van, *item)){
                         if(tempWeight >= (van->availableWeight - item->weight)  &&  tempTime >= (van->availableTime - item->duration)  &&  tempVolume >= (van->availableVolume - item->duration)){
                             tempWeight = van->availableWeight - item->weight;
                             tempVolume = van->availableVolume - item->volume;
@@ -72,8 +72,8 @@ void firstScenario::compute() {
 }
 
 
-bool isNegative(unsigned int first, unsigned int second){
-    return first < second;
+bool isNegative(truck van, request item){
+    return (van.availableWeight < item.weight || van.availableVolume < item.volume || van.availableTime < item.duration);
 }
 
 void truckLoadPrint(vector<request> truckLoad){

@@ -15,6 +15,6 @@ public:
 
 };
 
-bool isNegative(unsigned int first, unsigned int second);
+bool isNegative(truck, request);
 void truckLoadPrint(vector<request> truckLoad);
 #endif //DA_T1_FIRSTSCENARIO_H
