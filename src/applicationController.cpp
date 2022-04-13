@@ -110,7 +110,7 @@ void applicationController::printRequest() {
 
 
 void applicationController::computeFirst() {
-    if(checkForEmpty(data.getRequests()) || checkForEmpty(data.getTrucks())) return;
+    if(checkForEmpty(data.getRequests()) || checkForEmpty(data.getTrucks())) return;    // Verificacao se vecs vazios
     firstScenario algorithm(data.getRequests(),data.getTrucks());
     algorithm.compute();
 }
