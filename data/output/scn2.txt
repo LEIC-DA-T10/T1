@@ -1,23 +1,24 @@
 -*-------------  Report Scenario 2  ------------------*-
  |--> Truck Details: 
- |        Number of Trucks: 40
- |        Percentage of Trucks used: 42.5%
+ |        Number of Trucks: 49
+ |        Percentage of Trucks used: 38.7755%
  |--> Deliveries: 
- |        Number of Deliveries: 400
- |        Delivered: 79.5%
+ |        Number of Deliveries: 449
+ |        Delivered: 78.3964%
  |--> Balance: 
- |        Truck Cost: 242918$
- |        Total profit: 136595$
+ |        Truck Cost: 271487$
+ |        Total profit: 144192$
 -*-------------  Truck Distribution  -----------------*-
  |--> Truck 1 : 
- |        Remaining Volume : 164
- |        Remaining Weight : 3
- |        Cost : 13796
- |        Profit : 11795
+ |        Remaining Volume : 62
+ |        Remaining Weight : 19
+ |        Cost : 13481
+ |        Profit : 10330
  |        --> Distribution : (Volume,Weight,Reward)
  |                16 29 1883
  |                6 29 1859
  |                25 28 1909
+ |                6 29 1800
  |                16 28 1863
  |                23 29 1789
  |                6 26 1991
@@ -27,14 +28,14 @@
  |                16 29 1730
  |                23 26 1913
  |                16 29 1694
- |                20 26 1863
- |                22 28 1717
  |--> Truck 2 : 
- |        Remaining Volume : 115
- |        Remaining Weight : 1
- |        Cost : 13241
- |        Profit : 9460
+ |        Remaining Volume : 129
+ |        Remaining Weight : 13
+ |        Cost : 13796
+ |        Profit : 9187
  |        --> Distribution : (Volume,Weight,Reward)
+ |                22 28 1717
+ |                10 26 1843
  |                26 26 1790
  |                16 26 1789
  |                16 29 1593
@@ -46,15 +47,16 @@
  |                13 26 1639
  |                25 28 1521
  |                22 29 1448
- |                23 26 1594
+ |                19 22 1897
+ |--> Truck 3 : 
+ |        Remaining Volume : 118
+ |        Remaining Weight : 18
+ |        Cost : 13241
+ |        Profit : 14698
+ |        --> Distribution : (Volume,Weight,Reward)
  |                16 26 1590
  |                29 20 1991
- |--> Truck 3 : 
- |        Remaining Volume : 65
- |        Remaining Weight : 0
- |        Cost : 13956
- |        Profit : 17385
- |        --> Distribution : (Volume,Weight,Reward)
+ |                19 22 1804
  |                29 26 1522
  |                23 26 1520
  |                29 20 1972
@@ -62,23 +64,24 @@
  |                13 20 1951
  |                3 22 1768
  |                13 20 1925
+ |                25 28 1370
  |                9 25 1529
  |                19 22 1719
  |                19 19 1990
  |                7 20 1880
  |                10 22 1694
- |                19 19 1956
+ |--> Truck 4 : 
+ |        Remaining Volume : 25
+ |        Remaining Weight : 4
+ |        Cost : 13956
+ |        Profit : 12582
+ |        --> Distribution : (Volume,Weight,Reward)
  |                13 25 1467
  |                3 19 1928
  |                3 22 1662
  |                13 29 1255
  |                25 19 1889
- |--> Truck 4 : 
- |        Remaining Volume : 12
- |        Remaining Weight : 8
- |        Cost : 14105
- |        Profit : 9554
- |        --> Distribution : (Volume,Weight,Reward)
+ |                26 22 1628
  |                26 29 1233
  |                23 29 1232
  |                23 20 1786
@@ -90,18 +93,22 @@
  |                6 26 1291
  |                25 19 1753
  |                26 22 1513
- |                16 29 1142
+ |--> Truck 5 : 
+ |        Remaining Volume : 25
+ |        Remaining Weight : 5
+ |        Cost : 14105
+ |        Profit : 10724
+ |        --> Distribution : (Volume,Weight,Reward)
  |                26 20 1645
  |                3 20 1645
  |                26 26 1261
+ |                26 22 1487
  |                7 26 1257
- |--> Truck 5 : 
- |        Remaining Volume : 81
- |        Remaining Weight : 11
- |        Cost : 13618
- |        Profit : 9582
- |        --> Distribution : (Volume,Weight,Reward)
+ |                13 26 1253
+ |                3 23 1410
+ |                10 26 1229
  |                23 23 1382
+ |                19 22 1440
  |                19 25 1263
  |                7 20 1577
  |                19 16 1967
@@ -109,27 +116,34 @@
  |                16 29 1083
  |                23 16 1936
  |                22 19 1628
- |                10 29 1065
+ |--> Truck 6 : 
+ |        Remaining Volume : 86
+ |        Remaining Weight : 12
+ |        Cost : 13618
+ |        Profit : 9012
+ |        --> Distribution : (Volume,Weight,Reward)
  |                23 20 1536
  |                23 16 1918
  |                22 25 1227
  |                20 23 1325
  |                26 26 1170
  |                7 26 1166
+ |                13 16 1894
  |                6 19 1591
- |--> Truck 6 : 
- |        Remaining Volume : 1
- |        Remaining Weight : 36
- |        Cost : 14862
- |        Profit : 6353
- |        --> Distribution : (Volume,Weight,Reward)
+ |                7 23 1303
  |                6 26 1143
  |                26 22 1348
  |                29 29 1019
  |                13 16 1838
  |                25 22 1331
  |                22 16 1819
- |                3 16 1796
+ |                16 29 1002
+ |--> Truck 7 : 
+ |        Remaining Volume : 10
+ |        Remaining Weight : 53
+ |        Cost : 14862
+ |        Profit : 3619
+ |        --> Distribution : (Volume,Weight,Reward)
  |                3 20 1434
  |                13 16 1785
  |                20 23 1236
@@ -139,17 +153,18 @@
  |                23 29 957
  |                19 22 1260
  |                10 23 1205
- |--> Truck 7 : 
- |        Remaining Volume : 12
- |        Remaining Weight : 14
- |        Cost : 13865
- |        Profit : 10806
- |        --> Distribution : (Volume,Weight,Reward)
+ |                19 19 1437
  |                3 19 1432
  |                26 19 1397
  |                19 28 946
  |                29 23 1148
- |                16 28 935
+ |                19 22 1200
+ |--> Truck 8 : 
+ |        Remaining Volume : 10
+ |        Remaining Weight : 10
+ |        Cost : 13865
+ |        Profit : 12676
+ |        --> Distribution : (Volume,Weight,Reward)
  |                16 16 1633
  |                28 22 1166
  |                13 25 1026
@@ -157,21 +172,24 @@
  |                22 16 1598
  |                3 20 1263
  |                7 20 1241
+ |                3 13 1907
  |                19 13 1904
  |                22 13 1897
  |                3 13 1889
  |                16 28 875
  |                19 13 1875
  |                9 19 1281
- |--> Truck 8 : 
- |        Remaining Volume : 15
- |        Remaining Weight : 72
- |        Cost : 13356
- |        Profit : 8702
- |        --> Distribution : (Volume,Weight,Reward)
+ |                10 19 1278
  |                6 29 834
+ |                29 19 1268
  |                19 16 1489
- |                6 19 1243
+ |                28 25 952
+ |--> Truck 9 : 
+ |        Remaining Volume : 1
+ |        Remaining Weight : 88
+ |        Cost : 13356
+ |        Profit : 7092
+ |        --> Distribution : (Volume,Weight,Reward)
  |                28 19 1240
  |                26 22 1065
  |                3 16 1456
@@ -179,17 +197,19 @@
  |                19 13 1784
  |                29 16 1442
  |                22 25 914
+ |                16 19 1193
  |                6 19 1185
  |                16 13 1718
  |                13 13 1714
  |                6 13 1713
  |                3 16 1391
  |                13 13 1710
- |--> Truck 9 : 
- |        Remaining Volume : 0
- |        Remaining Weight : 35
+ |                29 29 763
+ |--> Truck 10 : 
+ |        Remaining Volume : 21
+ |        Remaining Weight : 69
  |        Cost : 15106
- |        Profit : 1170
+ |        Profit : 819
  |        --> Distribution : (Volume,Weight,Reward)
  |                29 16 1369
  |                13 13 1679
@@ -203,75 +223,90 @@
  |                13 23 916
  |                7 23 907
  |                13 29 719
+ |                26 16 1303
  |                26 16 1296
  |                3 22 940
- |                22 22 930
- |                25 28 724
- |--> Truck 10 : 
- |        Remaining Volume : 23
- |        Remaining Weight : 33
+ |--> Truck 11 : 
+ |        Remaining Volume : 20
+ |        Remaining Weight : 54
  |        Cost : 13476
- |        Profit : 8688
+ |        Profit : 4819
  |        --> Distribution : (Volume,Weight,Reward)
+ |                25 28 724
+ |                23 23 881
  |                20 13 1542
  |                9 22 909
  |                19 13 1537
  |                10 29 676
  |                3 13 1502
+ |                26 20 971
+ |                10 16 1202
  |                16 13 1477
  |                20 16 1200
  |                25 16 1200
+ |                25 22 861
  |                6 19 996
  |                22 16 1175
  |                9 13 1442
- |                29 26 719
+ |--> Truck 12 : 
+ |        Remaining Volume : 92
+ |        Remaining Weight : 1
+ |        Cost : 15048
+ |        Profit : 13557
+ |        --> Distribution : (Volume,Weight,Reward)
  |                26 26 716
  |                10 10 1856
  |                22 10 1848
+ |                19 10 1820
  |                13 29 626
  |                3 19 952
  |                3 10 1791
- |--> Truck 11 : 
- |        Remaining Volume : 10
- |        Remaining Weight : 36
- |        Cost : 15136
- |        Profit : 9387
- |        --> Distribution : (Volume,Weight,Reward)
+ |                26 29 610
  |                3 16 1105
  |                6 22 794
  |                7 29 598
  |                16 23 746
  |                3 19 901
+ |                10 13 1315
  |                19 9 1897
  |                3 13 1313
+ |                3 13 1306
  |                26 13 1295
  |                29 16 1051
  |                7 10 1672
  |                13 9 1857
  |                20 10 1663
  |                19 19 873
- |                29 10 1657
+ |--> Truck 13 : 
+ |        Remaining Volume : 17
+ |        Remaining Weight : 96
+ |        Cost : 15363
+ |        Profit : 4959
+ |        --> Distribution : (Volume,Weight,Reward)
  |                7 26 634
  |                6 16 1023
  |                16 20 816
  |                7 10 1630
  |                25 13 1251
+ |                22 9 1805
  |                19 16 1012
  |                19 22 735
- |--> Truck 12 : 
- |        Remaining Volume : 16
- |        Remaining Weight : 0
- |        Cost : 15531
- |        Profit : 7862
- |        --> Distribution : (Volume,Weight,Reward)
+ |                13 10 1614
  |                3 23 697
  |                28 19 828
  |                7 13 1210
  |                3 13 1210
  |                6 10 1572
+ |                22 16 982
  |                20 10 1569
  |                6 13 1201
  |                16 29 533
+ |--> Truck 14 : 
+ |        Remaining Volume : 3
+ |        Remaining Weight : 45
+ |        Cost : 15136
+ |        Profit : 2822
+ |        --> Distribution : (Volume,Weight,Reward)
  |                16 10 1508
  |                22 19 783
  |                3 10 1475
@@ -280,21 +315,23 @@
  |                29 10 1463
  |                25 28 521
  |                16 13 1121
+ |                19 28 512
  |                3 19 754
+ |                16 16 878
  |                3 9 1558
  |                23 16 868
  |                22 22 626
  |                13 25 550
  |                20 13 1054
  |                20 16 851
- |--> Truck 13 : 
- |        Remaining Volume : 4
- |        Remaining Weight : 45
- |        Cost : 15556
- |        Profit : 10275
- |        --> Distribution : (Volume,Weight,Reward)
+ |                19 28 486
  |                22 9 1509
- |                19 13 1040
+ |--> Truck 15 : 
+ |        Remaining Volume : 4
+ |        Remaining Weight : 8
+ |        Cost : 15531
+ |        Profit : 3101
+ |        --> Distribution : (Volume,Weight,Reward)
  |                10 19 709
  |                28 16 827
  |                29 13 1014
@@ -303,26 +340,32 @@
  |                3 23 571
  |                13 13 1008
  |                16 10 1309
+ |                9 16 814
  |                13 22 590
+ |                26 26 496
+ |                13 23 560
  |                10 10 1285
  |                25 22 580
  |                7 16 789
  |                10 7 1801
  |                13 13 967
+ |                6 22 562
  |                16 16 772
+ |                29 22 561
  |                22 10 1233
  |                7 16 764
+ |--> Truck 16 : 
+ |        Remaining Volume : 6
+ |        Remaining Weight : 50
+ |        Cost : 15556
+ |        Profit : 12153
+ |        --> Distribution : (Volume,Weight,Reward)
  |                13 6 1987
  |                28 6 1953
  |                7 13 898
  |                6 6 1921
  |                19 13 884
- |--> Truck 14 : 
- |        Remaining Volume : 27
- |        Remaining Weight : 8
- |        Cost : 13378
- |        Profit : 7832
- |        --> Distribution : (Volume,Weight,Reward)
+ |                16 6 1907
  |                22 19 602
  |                3 19 600
  |                16 16 706
@@ -332,6 +375,7 @@
  |                19 6 1813
  |                16 10 1081
  |                16 22 491
+ |                22 10 1079
  |                7 7 1524
  |                28 9 1185
  |                10 26 410
@@ -340,17 +384,18 @@
  |                25 22 471
  |                6 16 647
  |                22 16 644
- |                9 9 1137
+ |                13 26 396
+ |--> Truck 17 : 
+ |        Remaining Volume : 7
+ |        Remaining Weight : 50
+ |        Cost : 14342
+ |        Profit : 3576
+ |        --> Distribution : (Volume,Weight,Reward)
  |                13 6 1699
  |                9 22 452
  |                25 16 620
  |                6 16 618
- |--> Truck 15 : 
- |        Remaining Volume : 2
- |        Remaining Weight : 113
- |        Cost : 16287
- |        Profit : 695
- |        --> Distribution : (Volume,Weight,Reward)
+ |                3 10 984
  |                28 6 1636
  |                3 13 751
  |                26 6 1627
@@ -367,56 +412,12 @@
  |                13 6 1475
  |                9 6 1467
  |                23 20 437
- |                16 13 671
- |                22 13 667
- |                6 6 1445
- |                16 13 654
- |--> Truck 16 : 
- |        Remaining Volume : 8
- |        Remaining Weight : 15
+ |--> Truck 18 : 
+ |        Remaining Volume : 6
+ |        Remaining Weight : 106
  |        Cost : 13718
- |        Profit : 393
+ |        Profit : 5532
  |        --> Distribution : (Volume,Weight,Reward)
- |                20 20 418
- |                7 20 412
- |                19 26 309
- |                3 16 501
- |                7 10 801
- |                16 6 1332
- |                25 13 609
- |                26 29 267
- |                6 19 406
- |                19 25 305
- |                13 10 738
- |                13 9 820
- |                28 22 330
- |                28 6 1208
- |                19 6 1204
- |                6 10 713
- |                16 6 1188
- |                25 13 546
- |                22 22 318
- |                26 6 1156
- |                3 13 530
- |--> Truck 17 : 
- |        Remaining Volume : 13
- |        Remaining Weight : 46
- |        Cost : 13931
- |        Profit : 6656
- |        --> Distribution : (Volume,Weight,Reward)
- |                19 6 1108
- |                23 7 936
- |                26 16 403
- |                28 6 1065
- |                13 6 1062
- |                6 6 1058
- |                13 10 629
- |                20 7 894
- |                25 28 221
- |                3 13 472
- |                13 10 606
- |                19 28 213
- |                19 3 1982
  |                10 10 588
  |                22 22 265
  |                7 7 828
@@ -426,7 +427,52 @@
  |                22 25 224
  |                10 10 553
  |                7 3 1823
+ |                22 19 287
  |                10 13 419
+ |                19 3 1814
  |                10 13 414
  |                20 3 1785
+ |                28 16 327
+ |                26 7 738
+ |                10 3 1641
+ |                13 10 483
+ |                29 10 483
+ |                7 3 1607
+ |                16 13 367
+ |                22 3 1565
+ |--> Truck 19 : 
+ |        Remaining Volume : 6
+ |        Remaining Weight : 129
+ |        Cost : 13931
+ |        Profit : 2934
+ |        --> Distribution : (Volume,Weight,Reward)
+ |                6 3 1347
+ |                16 10 396
+ |                25 6 653
+ |                25 6 647
+ |                9 9 427
+ |                22 13 293
+ |                6 6 631
+ |                6 3 1176
+ |                3 16 220
+ |                7 7 501
+ |                13 6 580
+ |                6 6 564
+ |                10 6 542
+ |                13 6 490
+ |                22 13 226
+ |                9 13 211
+ |                20 7 386
+ |                23 13 206
+ |                6 6 442
+ |                16 3 836
+ |                29 10 243
+ |                13 3 795
+ |                19 3 784
+ |                19 3 762
+ |                3 3 715
+ |                16 3 704
+ |                13 3 699
+ |                3 3 699
+ |                13 3 690
 -*----------------------------------------------------*-
