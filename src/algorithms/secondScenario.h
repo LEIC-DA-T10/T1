@@ -6,12 +6,15 @@
 #define DA_T1_SECONDSCENARIO_H
 
 #define SMALLEST_LIMIT -10000
+#define EXPORT_PATH "../data/output/scn2.txt"
 
 #include "../abstractAlgorithm.h"
 #include <iostream>
 #include <algorithm>
 #include <queue>
 #include <chrono>
+#include <fstream>
+
 
 class secondScenario : abstractAlgorithm{
 private:
@@ -41,6 +44,8 @@ private:
     static int backtrackingSolver(const vector<request> &requests, loadLessTruck truck,int requestIndex, int profit, bool toLoad);
     static loadLessTruck getLoadlessTruck(const truck &truck);
     static bool insertLoadless(request requestToInsert, loadLessTruck &truckToInsert);
+    static void printOnlyMax(unsigned int maximum);
+    void exportResult(unsigned int maximum);
 public:
     secondScenario(const vector<request>& requests, const vector<truck>& trucks);
     void compute() override;

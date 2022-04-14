@@ -4,6 +4,7 @@
 
 
 #include "secondScenario.h"
+#include <stdlib.h>
 
 
 
@@ -14,7 +15,7 @@ void secondScenario::compute() {
 
     cout << "Choose which Algorithm to use :" << endl;
     cout << "1 - Greedy (Faster, but less accurate)" << endl;
-    cout << "2 - Backtracking (Slower, but more accurate)" << endl;
+    cout << "2 - Backtracking (Slower, but guarantees best result, limit 1 truck)" << endl;
     cin >> option;
 
     auto start = std::chrono::system_clock::now();
@@ -22,6 +23,8 @@ void secondScenario::compute() {
         maximumValue = getMax3(results[0] = computeByWeight(),results[1] = computeByVolume(),results[2] = computeByWeightToVolume());
     }
     else if(option == 2){
+        if (requests.size() > 1)
+            cout << "WARNING : More than 1 truck detected, only using first truck." << endl;
         maximumValue = forceCompute();
     }
     else{
@@ -32,11 +35,20 @@ void secondScenario::compute() {
     std::chrono::duration<double> elapsed_seconds = end-start;
     std::time_t end_time = std::chrono::system_clock::to_time_t(end);
 
-    if(option == 1)
+    if(option == 1){
+        char answer;
         printResult(maximumValue);
-    if(option == 2)
-        cout << maximumValue << endl;
-    printComputationTime(elapsed_seconds,end_time);
+        printComputationTime(elapsed_seconds,end_time);
+        cout << "Do you want to export the distribution to a file ? (y/n)" << endl;
+        cin >> answer;
+        if(answer == 'y')
+            exportResult(maximumValue);
+    }
+    else if(option == 2){
+        printOnlyMax(maximumValue);
+        printComputationTime(elapsed_seconds,end_time);
+    }
+
 }
 
 secondScenario::secondScenario(const vector<request>& requests, const vector<truck>& trucks) : abstractAlgorithm(requests, trucks) {
@@ -228,28 +240,6 @@ unsigned int secondScenario::numberOfRequests(const vector<truck> &trucks) {
     return counter;
 }
 
-void secondScenario::printResult(unsigned int maximumValue) {
-    cout << "-*-------------  Report Scenario 2  ------------------*-" << endl;
-    cout << " |--> Truck Details: " << endl;
-    cout << " |        Number of Trucks: " << trucks.size() << endl;
-    cout << " |        Percentage of Trucks used: " << (double)outputTrucks[bestScenario].size()/(double)trucks.size() * 100.0 << "%" << endl;
-    cout << " |--> Deliveries: " << endl;
-    cout << " |        Number of Deliveries: " << requests.size() << endl;
-    cout << " |        Delivered: " << ((double)numberOfRequests(outputTrucks[bestScenario])/(double)requests.size()) * 100.0 << "%" << endl;
-    cout << " |--> Balance: " << endl;
-    cout << " |        Truck Cost: " << calculateCost(outputTrucks[bestScenario]) << "$" << endl;
-    cout << " |        Total profit: " << maximumValue << "$" << endl;
-    cout << "-*----------------------------------------------------*-" << endl;
-}
-
-void secondScenario::printComputationTime(chrono::duration<double> elapsed_seconds, time_t end_time) {
-    cout << "-*-------------  Computation Time --------------------*-" << endl;
-    cout << " |--> Time Details: " << endl;
-    cout << " |        Elapsed Time: " << elapsed_seconds.count() << "s" << endl;
-    cout << " |        Finished Computation At: " << std::ctime(&end_time);
-    cout << "-*----------------------------------------------------*-" << endl;
-}
-
 unsigned int secondScenario::forceCompute() {
     loadLessTruck truck = getLoadlessTruck(trucks.at(0));
     int value = max(backtrackingSolver(requests,truck,0,0,false), backtrackingSolver(requests,truck,0,0, true));
@@ -289,6 +279,66 @@ bool secondScenario::insertLoadless(request requestToInsert, loadLessTruck &truc
         return true;
     }
     return false;
+}
+
+void secondScenario::printResult(unsigned int maximumValue) {
+    cout << "-*-------------  Report Scenario 2  ------------------*-" << endl;
+    cout << " |--> Truck Details: " << endl;
+    cout << " |        Number of Trucks: " << trucks.size() << endl;
+    cout << " |        Percentage of Trucks used: " << (double)outputTrucks[bestScenario].size()/(double)trucks.size() * 100.0 << "%" << endl;
+    cout << " |--> Deliveries: " << endl;
+    cout << " |        Number of Deliveries: " << requests.size() << endl;
+    cout << " |        Delivered: " << ((double)numberOfRequests(outputTrucks[bestScenario])/(double)requests.size()) * 100.0 << "%" << endl;
+    cout << " |--> Balance: " << endl;
+    cout << " |        Truck Cost: " << calculateCost(outputTrucks[bestScenario]) << "$" << endl;
+    cout << " |        Total profit: " << maximumValue << "$" << endl;
+    cout << "-*----------------------------------------------------*-" << endl;
+}
+
+void secondScenario::printComputationTime(chrono::duration<double> elapsed_seconds, time_t end_time) {
+    cout << "-*-------------  Computation Time --------------------*-" << endl;
+    cout << " |--> Time Details: " << endl;
+    cout << " |        Elapsed Time: " << elapsed_seconds.count() << "s" << endl;
+    cout << " |        Finished Computation At: " << std::ctime(&end_time);
+    cout << "-*----------------------------------------------------*-" << endl;
+}
+
+
+void secondScenario::printOnlyMax(unsigned int maximum) {
+    cout << "-*-------------  Scenario 2 --------------------------*-" << endl;
+    cout << " |--> Maximum Profit : " << maximum <<endl;
+    cout << "-*----------------------------------------------------*-" << endl;
+}
+
+void secondScenario::exportResult(unsigned int maximum) {
+    ofstream file(EXPORT_PATH);
+    int counter = 1;
+    file << "-*-------------  Report Scenario 2  ------------------*-" << endl;
+    file << " |--> Truck Details: " << endl;
+    file << " |        Number of Trucks: " << trucks.size() << endl;
+    file << " |        Percentage of Trucks used: " << (double)outputTrucks[bestScenario].size()/(double)trucks.size() * 100.0 << "%" << endl;
+    file << " |--> Deliveries: " << endl;
+    file << " |        Number of Deliveries: " << requests.size() << endl;
+    file << " |        Delivered: " << ((double)numberOfRequests(outputTrucks[bestScenario])/(double)requests.size()) * 100.0 << "%" << endl;
+    file << " |--> Balance: " << endl;
+    file << " |        Truck Cost: " << calculateCost(outputTrucks[bestScenario]) << "$" << endl;
+    file << " |        Total profit: " << maximum << "$" << endl;
+    file << "-*-------------  Truck Distribution  -----------------*-" << endl;
+
+    for(const auto& truck : outputTrucks[bestScenario]){
+        file << " |--> Truck "<< counter <<" : " << endl;
+        file << " |        Remaining Volume : " << truck.maxVolume << endl;
+        file << " |        Remaining Weight : " << truck.maxWeight << endl;
+        file << " |        Cost : " << truck.cost << endl;
+        file << " |        --> Distribution : (Volume,Weight,Reward)" << endl;
+        for(const auto &request : truck.truckLoad){
+            file << " |                " << request.volume << " " << request.weight << " " << request.reward << endl;
+        }
+        counter++;
+    }
+    file << "-*----------------------------------------------------*-" << endl;
+    cout << "Written results to : "<< realpath(EXPORT_PATH, nullptr) << endl;
+    file.close();
 }
 
 
