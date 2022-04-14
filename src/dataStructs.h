@@ -18,4 +18,11 @@ struct truck{
     std::vector<request> truckLoad;
 };
 
+struct loadLessTruck{
+    unsigned int maxVolume;
+    unsigned int maxWeight;
+    unsigned int cost;
+    bool used = false;
+};
+
 #endif //DA_T1_DATASTRUCTS_H

@@ -5,17 +5,37 @@
 
 #include "secondScenario.h"
 
+
+
 void secondScenario::compute() {
     unsigned int results[3];
+    int option;
+    unsigned int maximumValue = 0;
+
+    cout << "Choose which Algorithm to use :" << endl;
+    cout << "1 - Greedy (Faster, but less accurate)" << endl;
+    cout << "2 - Backtracking (Slower, but more accurate)" << endl;
+    cin >> option;
 
     auto start = std::chrono::system_clock::now();
-    unsigned int maximumValue = getMax3(results[0] = computeByWeight(),results[1] = computeByVolume(),results[2] = computeByWeightToVolume());
+    if(option == 1){
+        maximumValue = getMax3(results[0] = computeByWeight(),results[1] = computeByVolume(),results[2] = computeByWeightToVolume());
+    }
+    else if(option == 2){
+        maximumValue = forceCompute();
+    }
+    else{
+        cout << "ERROR : Invalid Option" << endl;
+        return;
+    }
     auto end = std::chrono::system_clock::now();
-
     std::chrono::duration<double> elapsed_seconds = end-start;
     std::time_t end_time = std::chrono::system_clock::to_time_t(end);
 
-    printResult(maximumValue);
+    if(option == 1)
+        printResult(maximumValue);
+    if(option == 2)
+        cout << maximumValue << endl;
     printComputationTime(elapsed_seconds,end_time);
 }
 
@@ -229,6 +249,51 @@ void secondScenario::printComputationTime(chrono::duration<double> elapsed_secon
     cout << " |        Finished Computation At: " << std::ctime(&end_time);
     cout << "-*----------------------------------------------------*-" << endl;
 }
+
+unsigned int secondScenario::forceCompute() {
+    loadLessTruck truck = getLoadlessTruck(trucks.at(0));
+    int value = max(backtrackingSolver(requests,truck,0,0,false), backtrackingSolver(requests,truck,0,0, true));
+    return value;
+}
+
+int secondScenario::backtrackingSolver(const vector<request> &requests, loadLessTruck truck,int requestIndex, int profit, bool toLoad) {
+    if (requestIndex >= requests.size()){
+        return profit;
+    }
+    if(requestIndex >= 0){
+        if (requests.at(requestIndex).weight > truck.maxWeight || requests.at(requestIndex).volume > truck.maxVolume)
+            return SMALLEST_LIMIT;
+        if(toLoad){
+            truck.maxVolume -= requests.at(requestIndex).volume;
+            truck.maxWeight -= requests.at(requestIndex).weight;
+            profit += (int)requests.at(requestIndex).reward;
+            if(!truck.used){
+                profit -= (int)truck.cost;
+                truck.used = true;
+            }
+        }
+    }
+    return max(backtrackingSolver(requests,truck,requestIndex+1,profit,true),backtrackingSolver(requests,truck,requestIndex+1,profit,false));
+}
+
+loadLessTruck secondScenario::getLoadlessTruck(const truck &truck) {
+    loadLessTruck toAdd;
+    toAdd.cost = truck.cost;
+    toAdd.maxWeight = truck.maxWeight;
+    toAdd.maxVolume = truck.maxVolume;
+    return toAdd;
+}
+
+bool secondScenario::insertLoadless(request requestToInsert, loadLessTruck &truckToInsert) {
+    if(requestToInsert.weight <= truckToInsert.maxWeight && requestToInsert.volume <= truckToInsert.maxVolume){
+        truckToInsert.maxWeight -= requestToInsert.weight;
+        truckToInsert.maxVolume -= requestToInsert.volume;
+        return true;
+    }
+    return false;
+}
+
+
 
 
 

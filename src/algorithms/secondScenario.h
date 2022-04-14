@@ -5,6 +5,7 @@
 #ifndef DA_T1_SECONDSCENARIO_H
 #define DA_T1_SECONDSCENARIO_H
 
+#define SMALLEST_LIMIT -10000
 
 #include "../abstractAlgorithm.h"
 #include <iostream>
@@ -36,6 +37,10 @@ private:
     static unsigned int numberOfRequests(const vector<truck> &trucks);
     void printResult(unsigned int);
     static void printComputationTime(chrono::duration<double> elapsed_seconds,time_t end_time);
+    unsigned int forceCompute();
+    static int backtrackingSolver(const vector<request> &requests, loadLessTruck truck,int requestIndex, int profit, bool toLoad);
+    static loadLessTruck getLoadlessTruck(const truck &truck);
+    static bool insertLoadless(request requestToInsert, loadLessTruck &truckToInsert);
 public:
     secondScenario(const vector<request>& requests, const vector<truck>& trucks);
     void compute() override;
