@@ -15,7 +15,7 @@ protected:
     vector<request> requests;
     vector<truck> trucks;
 public:
-    abstractAlgorithm(vector<request> requests,vector<truck> trucks);
+    abstractAlgorithm(const vector<request>& requests,const vector<truck>& trucks);
     virtual void compute() = 0;
 };
 

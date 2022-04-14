@@ -214,7 +214,7 @@ void dataIO::printRequests(char answer) {
             std::cout << request.duration << " " << std::endl;
         }
     }
-    if(file) std::cout << "Ficheiro criado com sucesso em : " << REQUEST_PRINT_PATH << endl;
+    if(file) std::cout << "Written to file at : " << realpath(REQUEST_PRINT_PATH, nullptr) << endl;
     std::cout << "----" << endl;
 }
 
@@ -236,7 +236,7 @@ void dataIO::printTrucks(char answer) {
             std::cout << truck.cost << " " << endl;
         }
     }
-    if(file) std::cout << "Ficheiro criado com sucesso em : " << TRUCK_PRINT_PATH << endl;
+    if(file) std::cout << "Written to file at : " << realpath(REQUEST_PRINT_PATH, nullptr) << endl;
     std::cout << "----" << endl;
 }
 
