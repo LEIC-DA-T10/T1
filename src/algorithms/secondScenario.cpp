@@ -260,17 +260,15 @@ int secondScenario::backtrackingSolver(const vector<request> &requests, loadLess
     if (requestIndex >= requests.size()){
         return profit;
     }
-    if(requestIndex >= 0){
-        if (requests.at(requestIndex).weight > truck.maxWeight || requests.at(requestIndex).volume > truck.maxVolume)
-            return SMALLEST_LIMIT;
-        if(toLoad){
-            truck.maxVolume -= requests.at(requestIndex).volume;
-            truck.maxWeight -= requests.at(requestIndex).weight;
-            profit += (int)requests.at(requestIndex).reward;
-            if(!truck.used){
-                profit -= (int)truck.cost;
-                truck.used = true;
-            }
+    if (requests.at(requestIndex).weight > truck.maxWeight || requests.at(requestIndex).volume > truck.maxVolume)
+        return SMALLEST_LIMIT;
+    if(toLoad){
+        truck.maxVolume -= requests.at(requestIndex).volume;
+        truck.maxWeight -= requests.at(requestIndex).weight;
+        profit += (int)requests.at(requestIndex).reward;
+        if(!truck.used){
+            profit -= (int)truck.cost;
+            truck.used = true;
         }
     }
     return max(backtrackingSolver(requests,truck,requestIndex+1,profit,true),backtrackingSolver(requests,truck,requestIndex+1,profit,false));
