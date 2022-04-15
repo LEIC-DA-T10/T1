@@ -270,15 +270,6 @@ loadLessTruck secondScenario::getLoadlessTruck(const truck &truck) {
     return toAdd;
 }
 
-bool secondScenario::insertLoadless(request requestToInsert, loadLessTruck &truckToInsert) {
-    if(requestToInsert.weight <= truckToInsert.maxWeight && requestToInsert.volume <= truckToInsert.maxVolume){
-        truckToInsert.maxWeight -= requestToInsert.weight;
-        truckToInsert.maxVolume -= requestToInsert.volume;
-        return true;
-    }
-    return false;
-}
-
 void secondScenario::printResult(unsigned int maximumValue) {
     cout << "-*-------------  Report Scenario 2  ------------------*-" << endl;
     cout << " |--> Truck Details: " << endl;
