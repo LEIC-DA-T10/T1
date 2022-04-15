@@ -18,9 +18,20 @@
 
 class secondScenario : abstractAlgorithm{
 private:
-
+    /**
+     * Request vector which stores the requests that are then sorted to use in the greedy algorithm approach.
+     */
     vector<request> sortedRequests;
+    /**
+     * Truck vector which stores the trucks that are then sorted to use in the greedy algorithm approach.
+     */
     vector<truck> sortedTrucks;
+    /**
+     * Truck vector array which stores the trucks that each alternative computation outputs.\n
+     * The vector in index 0 corresponds to the output of the computeByWeight approach.\n
+     * The vector in index 1 corresponds to the output of the computebyVolume approach.\n
+     * The vector in index 2 corresponds to the output of the computeByWeightAndVolume approach.\n
+     */
     vector<truck> outputTrucks[3];
     int bestScenario;
     /**
