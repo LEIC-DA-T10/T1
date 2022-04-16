@@ -292,7 +292,6 @@ void secondScenario::printComputationTime(chrono::duration<double> elapsed_secon
     cout << "-*----------------------------------------------------*-" << endl;
 }
 
-
 void secondScenario::printOnlyMax(unsigned int maximum) {
     cout << "-*-------------  Scenario 2 --------------------------*-" << endl;
     cout << " |--> Maximum Profit : " << maximum <<endl;

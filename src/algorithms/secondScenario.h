@@ -188,6 +188,4 @@ public:
      */
     void compute() override;
 };
-
-
 #endif //DA_T1_SECONDSCENARIO_H

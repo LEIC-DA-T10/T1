@@ -87,6 +87,8 @@ public:
      * Prints the main menu on the terminal screen.
      */
     static void printMainMenu();
+
+    void computeThird_();
 };
 
 

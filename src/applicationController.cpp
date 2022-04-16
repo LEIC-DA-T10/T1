@@ -3,6 +3,7 @@
 //
 
 #include "applicationController.h"
+#include "algorithms/thirdScenario__.h"
 
 using namespace std;
 
@@ -29,6 +30,9 @@ bool applicationController::run() {
             return true;
         case 6:
             printRequest();
+            return true;
+        case 8:
+            computeThird_();
             return true;
         case 7:
             printTruck();
@@ -58,7 +62,6 @@ void applicationController::printMainMenu(){
     cout << " |        0 - Exit application "<< endl;
     cout << "-*----------------------------------------------------*-" << endl;
 }
-
 
 void applicationController::readFixed() {
     int startingIndex, endingIndex;
@@ -92,6 +95,7 @@ void applicationController::readRandom() {
     data.readRequestsRandom(number);
     cout << "---- Finished reading data ----" << endl;
 }
+
 
 
 void applicationController::printTruck() {
@@ -128,6 +132,12 @@ void applicationController::computeThird() {
     thirdScenario algorithm(data.getRequests(),data.getTrucks());
     algorithm.compute();
 }
+void applicationController::computeThird_() {
+    if(checkForEmpty(data.getRequests()) || checkForEmpty(data.getTrucks())) return;
+    thirdScenario__ algorithm(data.getRequests(),data.getTrucks());
+    algorithm.compute();
+}
+
 
 bool applicationController::checkForEmpty(const vector<request>& vector){
     if(vector.empty()){
