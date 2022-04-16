@@ -49,10 +49,5 @@ private:
 public:
     secondScenario(const vector<request>& requests, const vector<truck>& trucks);
     void compute() override;
-
-
-
 };
-
-
 #endif //DA_T1_SECONDSCENARIO_H

@@ -42,8 +42,8 @@ int thirdScenario_::knapSackRec(int W, vector<request> wt, int i,int** dp){
         dp[i][W] = knapSackRec(W, wt,i - 1,dp);
         return dp[i][W];
     }else { // se nao calcula a media do tempo com os pedidos que ja tem?
-        dp[i][W] = max(val[i]+ knapSackRec(W - wt[i],wt, val,i - 1, dp),knapSackRec(W, wt, val,i - 1, dp)); // funcao antiga para max profit
-        dp[i][W] = min(average(encomendas + esta , encomendas ate agora...));
+      //  dp[i][W] = max(val[i]+ knapSackRec(W - wt[i],wt, val,i - 1, dp),knapSackRec(W, wt, val,i - 1, dp)); // funcao antiga para max profit
+     //   dp[i][W] = min(average(encomendas + esta , encomendas ate agora...));
     }
         return dp[i][W];
     }

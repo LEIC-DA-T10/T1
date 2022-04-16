@@ -3,6 +3,7 @@
 //
 
 #include "applicationController.h"
+#include "algorithms/thirdScenario__.h"
 
 using namespace std;
 
@@ -132,7 +133,7 @@ void applicationController::computeThird() {
 }
 void applicationController::computeThird_() {
     if(checkForEmpty(data.getRequests()) || checkForEmpty(data.getTrucks())) return;
-    thirdScenario algorithm(data.getRequests(),data.getTrucks());
+    thirdScenario__ algorithm(data.getRequests(),data.getTrucks());
     algorithm.compute();
 }
 
