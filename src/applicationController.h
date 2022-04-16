@@ -36,6 +36,8 @@ public:
     bool run();
     void setState(int state);
     static void printMainMenu();
+
+    void computeThird_();
 };
 
 

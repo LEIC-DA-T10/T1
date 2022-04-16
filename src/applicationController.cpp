@@ -30,6 +30,9 @@ bool applicationController::run() {
         case 6:
             printRequest();
             return true;
+        case 8:
+            computeThird_();
+            return true;
         case 7:
             printTruck();
             return true;
@@ -53,6 +56,7 @@ void applicationController::printMainMenu(){
     cout << "---- Printing Data ----" << endl;
     cout << "6 - Print Request Dataset" << endl;
     cout << "7 - Print Truck Dataset" << endl;
+    cout << "8 - Tou cansado" << endl;
     cout << "---- Exit ----" << endl;
     cout << "0 - Exit application" << endl;
 }
@@ -126,6 +130,12 @@ void applicationController::computeThird() {
     thirdScenario algorithm(data.getRequests(),data.getTrucks());
     algorithm.compute();
 }
+void applicationController::computeThird_() {
+    if(checkForEmpty(data.getRequests()) || checkForEmpty(data.getTrucks())) return;
+    thirdScenario algorithm(data.getRequests(),data.getTrucks());
+    algorithm.compute();
+}
+
 
 bool applicationController::checkForEmpty(const vector<request>& vector){
     if(vector.empty()){
