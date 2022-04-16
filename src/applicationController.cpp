@@ -3,7 +3,6 @@
 //
 
 #include "applicationController.h"
-#include "algorithms/thirdScenario__.h"
 
 using namespace std;
 
@@ -14,27 +13,31 @@ applicationController::applicationController() {
 bool applicationController::run() {
     switch (state) {
         case 1:
+         //   system ("CLS");
             readFixed();
             return true;
         case 2:
+         //   system ("CLS");
             readRandom();
             return true;
         case 3:
+          //  system ("CLS");
             computeFirst();
             return true;
         case 4:
+      //      system ("CLS");
             computeSecond();
             return true;
         case 5:
+          //  system ("CLS");
             computeThird();
             return true;
         case 6:
+        //    system ("CLS");
             printRequest();
             return true;
-        case 8:
-            computeThird_();
-            return true;
         case 7:
+       //     system ("CLS");
             printTruck();
             return true;
         default:
@@ -65,7 +68,6 @@ void applicationController::printMainMenu(){
 
 void applicationController::readFixed() {
     int startingIndex, endingIndex;
-
     cout << "---- Truck Dataset ----" << endl;
     cout << "Starting Index [0,"<< data.getNumberTrucks()-1 <<"] : " << endl;
     cin >> startingIndex;
@@ -84,7 +86,6 @@ void applicationController::readFixed() {
 
 void applicationController::readRandom() {
     int number;
-
     cout << "---- Truck Dataset ----" << endl;
     cout << "Number of Random Trucks : [1,"<< data.getNumberTrucks() <<"] : " << endl;
     cin >> number;
@@ -95,8 +96,6 @@ void applicationController::readRandom() {
     data.readRequestsRandom(number);
     cout << "---- Finished reading data ----" << endl;
 }
-
-
 
 void applicationController::printTruck() {
     char answer;
@@ -113,7 +112,6 @@ void applicationController::printRequest() {
     cin >> answer;
     data.printRequests(answer);
 }
-
 
 void applicationController::computeFirst() {
     if(checkForEmpty(data.getRequests()) || checkForEmpty(data.getTrucks())) return;
@@ -132,12 +130,6 @@ void applicationController::computeThird() {
     thirdScenario algorithm(data.getRequests(),data.getTrucks());
     algorithm.compute();
 }
-void applicationController::computeThird_() {
-    if(checkForEmpty(data.getRequests()) || checkForEmpty(data.getTrucks())) return;
-    thirdScenario__ algorithm(data.getRequests(),data.getTrucks());
-    algorithm.compute();
-}
-
 
 bool applicationController::checkForEmpty(const vector<request>& vector){
     if(vector.empty()){

@@ -26,6 +26,7 @@ private:
     int nReq = 0;
     vector<request> deliveryList;
 
+
 public:
     thirdScenario(const vector<request>& requests, const vector<truck>& trucks);
     void compute() override;
@@ -33,6 +34,23 @@ public:
     void deliver(request &request);
     static bool lDeliveryTime(const request &a, const request &b);
     void printStats();
+    void compute1();
+    void compute2();
+
+    vector<request> fitsTruck();
+    void calculateDeliverySubsets(vector<int> &deliveryVector, vector<vector<int>> &res, vector<int> &subset, int index);
+    vector<vector<int>> subsets(vector<int> &deliveryVector);
+    vector<vector<int>> analiseRes(const vector<vector<int>> &res) const;
+
+    static vector<int> bestOption(vector<vector<int>> &res) ;
+
+    void printOnlyMax(vector<int> bestDelivery);
+
+    static void printComputationTime(chrono::duration<double> elapsed_seconds, time_t end_time);
+
+    void printTruckDetails() const;
+
+    void loadTruck();
 };
 
 
