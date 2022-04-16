@@ -20,7 +20,6 @@ private:
     vector<request> requests;
     vector<truck> trucks;
 
-
     unsigned int usedTime = 0;
     unsigned int income = 0;
     const unsigned int timeFrame = 28800;

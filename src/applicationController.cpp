@@ -97,6 +97,7 @@ void applicationController::readRandom() {
 }
 
 
+
 void applicationController::printTruck() {
     char answer;
     if(checkForEmpty(data.getTrucks())) return;

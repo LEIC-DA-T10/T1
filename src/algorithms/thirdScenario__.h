@@ -20,11 +20,6 @@ private:
 
     unsigned int usedTime = 0;
     const unsigned int timeFrame = 28800;
-
-    int nReq = 0;
-
-    int cnt;
-
 public:
     thirdScenario__(const vector<request>& requests, const vector<truck>& trucks);
     void compute() override;
@@ -32,11 +27,18 @@ public:
     vector<request> fitsTruck();
     bool isDeliverable(int i) const;
 
+    void calculateDeliverySubsets(vector<int> &deliveryVector, vector<vector<int>> &res, vector<int> &subset, int index);
+    vector<vector<int>> subsets(vector<int> &deliveryVector);
+    vector<vector<int>> analiseRes(const vector<vector<int>> &res) const;
 
+    static vector<int> bestOption(vector<vector<int>> &res) ;
 
+    static void printOnlyMax(unsigned int maximum);
 
-    void Combination(vector<request> a, int reqLen, int start, int currLen, bool *check, int len);
+    static void printComputationTime(chrono::duration<double> elapsed_seconds, time_t end_time);
 
-    void testSomething(vector<request> pat, int i, int currSum);
+    void printTruckDetails() const;
+
+    void printOnlyMax(vector<int> bestDelivery);
 };
 #endif //DA_T1_THIRDSCENARIO___H
