@@ -42,7 +42,7 @@ void thirdScenario::printStats(){
         cout << " |        Rejected: 0%" << endl;
     }else
         cout << " |        Rejected: " << 100 - deliPerc << "%" << endl;
-    cout << " |        Average Time per Delivery: "<< avgTimeM << ","<<avgTimeS<<" min"<<endl;
+    cout << " |        Average Time per Delivery: "<< avgTimeM << "min "<<avgTimeS<<"secs"<<endl;
     cout << " |--> Balance: " << endl;
     cout << " |       Gains from Deliveries: " << income << "$" << endl;
     cout << " |       Total profit: " <<income - express.cost<< "$"<< endl;

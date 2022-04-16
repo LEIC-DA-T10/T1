@@ -12,10 +12,24 @@ using namespace std;
 
 class abstractAlgorithm {
 protected:
+    /**
+     * Request Vector which holds all the requests used in the algorithm
+     */
     vector<request> requests;
+    /**
+     * Truck Vector which holds all the trucks used in the algorithm
+     */
     vector<truck> trucks;
 public:
+    /**
+     * Constructor for the abstractAlgorithm class, receives a request and truck vector which are then used to instantiate their respective vectors.
+     * @param requests request vector to use in the algorithm
+     * @param trucks truck vector to use in the algorithm
+     */
     abstractAlgorithm(const vector<request>& requests,const vector<truck>& trucks);
+    /**
+     * Pure virtual function used to guarantee that any child class also has the compute function.
+     */
     virtual void compute() = 0;
 };
 
