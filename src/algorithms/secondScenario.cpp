@@ -3,8 +3,8 @@
 //
 
 
+#include <random>
 #include "secondScenario.h"
-#include <stdlib.h>
 
 
 
@@ -19,6 +19,7 @@ void secondScenario::compute() {
     cin >> option;
 
     auto start = std::chrono::system_clock::now();
+
     if(option == 1){
         maximumValue = getMax3(results[0] = computeByWeight(),results[1] = computeByVolume(),results[2] = computeByWeightToVolume());
     }
@@ -56,6 +57,13 @@ secondScenario::secondScenario(const vector<request>& requests, const vector<tru
     sortedTrucks = trucks;
     bestScenario = 0;
 }
+
+secondScenario::secondScenario() : abstractAlgorithm() {
+    bestScenario = 0;
+}
+
+
+
 
 void secondScenario::printTrucks(const vector<truck> &trucks) {
     for (const auto& truck: trucks) {
@@ -330,6 +338,51 @@ void secondScenario::exportResult(unsigned int maximum) {
     file.close();
 }
 
+void secondScenario::compare(int number) {
+    double sum = 0;
+    int counter = 0;
+
+    auto start = std::chrono::system_clock::now();
+
+    for(int i = 0; i < number; i++){
+        dataIO data(TRUCK_PATH,REQUEST_PATH);
+
+        //create random seed
+        std::random_device rd;
+        std::mt19937 mt(rd());
+        std::uniform_real_distribution<double> dist(15, 25);
+
+        //setup random data, gets a random truck and [15,25] random requests.
+        data.readTrucksRandom(1);
+        data.readRequestsRandom((int) dist(mt));
+        sortedTrucks = data.getTrucks();
+        trucks = data.getTrucks();
+        sortedRequests = data.getRequests();
+        requests = data.getRequests();
+
+        //compare results
+        unsigned int firstResult = getMax3(computeByWeight(),computeByVolume(),computeByWeightToVolume());
+        unsigned int secondResult = forceCompute();
+
+        if(firstResult && secondResult != 0){
+            sum += 100.0-((firstResult*100.0)/(double)secondResult);
+            counter++;
+        }
+        cout << "(" << i+1 << "/" << number << ")" << endl;
+    }
+
+    auto end = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsed_seconds = end-start;
+    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+
+    cout << "-*-------------  Comparison --------------------------*-" << endl;
+    cout << " |--> Number of iterations : " << number << endl;
+    cout << " |--> The Greedy is algorithm is : " << sum/(double)counter << "% less efficient." <<endl;
+    cout << "-*----------------------------------------------------*-" << endl;
+
+    printComputationTime(elapsed_seconds,end_time);
+
+}
 
 
 

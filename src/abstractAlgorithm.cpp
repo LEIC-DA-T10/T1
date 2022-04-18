@@ -9,3 +9,5 @@ abstractAlgorithm::abstractAlgorithm(const vector<request>& requests,const vecto
     this->trucks = trucks;
 }
 
+abstractAlgorithm::abstractAlgorithm() = default;
+
