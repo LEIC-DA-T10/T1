@@ -198,6 +198,4 @@ public:
     void compute() override;
     void compare(int number);
 };
-
-
 #endif //DA_T1_SECONDSCENARIO_H
