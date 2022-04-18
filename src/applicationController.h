@@ -87,6 +87,10 @@ public:
      * Prints the main menu on the terminal screen.
      */
     static void printMainMenu();
+    /**
+     * Compares the 2 alternative algorithms for the second scenario.
+     */
+    static void compareSecond();
 };
 
 

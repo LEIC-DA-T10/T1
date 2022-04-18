@@ -7,6 +7,8 @@
 
 #define SMALLEST_LIMIT -10000
 #define EXPORT_PATH "../data/output/scn2.txt"
+#define TRUCK_PATH "../data/input/carrinhas.txt"
+#define REQUEST_PATH "../data/input/encomendas.txt"
 
 #include "../abstractAlgorithm.h"
 #include <iostream>
@@ -14,6 +16,9 @@
 #include <queue>
 #include <chrono>
 #include <fstream>
+#include "../dataIO.h"
+#include <stdlib.h>
+
 
 
 class secondScenario : abstractAlgorithm{
@@ -184,9 +189,14 @@ public:
      */
     secondScenario(const vector<request>& requests, const vector<truck>& trucks);
     /**
-     * Used to ask which algorithm the user wants to use. Also handles the overhaul flow of the class.
+     * Empty constructor for the secondScenario Class, used in the compare option.
+     */
+    secondScenario();
+    /**
+     * Used to ask which algorithm the user wants to use. Also handles the overall flow of the class.
      */
     void compute() override;
+    void compare(int number);
 };
 
 
