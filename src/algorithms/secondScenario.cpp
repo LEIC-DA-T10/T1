@@ -112,7 +112,7 @@ unsigned int secondScenario::computeByWeight() {
 
     //Insert requests into a request queue
     for(auto request : sortedRequests)
-       requestQueue.push(request);
+        requestQueue.push(request);
 
     while(!requestQueue.empty()){
         request currentRequest = requestQueue.front();
@@ -189,24 +189,22 @@ unsigned int secondScenario::computeByWeightToVolume() {
 }
 
 int secondScenario::calculateProfit(vector<truck> &trucks) {
-    int profit = 0; int truckCounter = 0;
-    vector<int> trucksToRemove;
-    for(const auto& truck : trucks){
+    int profit = 0;
+    vector<truck> profitableTrucks;
+    for(auto truck : trucks){
         int truckReward = 0;
         for(auto request : truck.truckLoad){
             truckReward += (int)request.reward;
         }
         truckReward -= (int)truck.cost;
 
-        if(truckReward < 0) trucksToRemove.push_back(truckCounter);
-        else profit += truckReward;
+        if(truckReward > 0){
+            truck.profit = truckReward;
+            profitableTrucks.push_back(truck);
+            profit += truckReward;
+        }
     }
-    //Removing un-profitable trucks.
-    for(auto index : trucksToRemove){
-        truck &truck = trucks.at(index);
-        truck.truckLoad.clear();
-        trucks.erase(trucks.begin()+index);
-    }
+    trucks = profitableTrucks;
 
     return profit;
 }
@@ -272,15 +270,6 @@ loadLessTruck secondScenario::getLoadlessTruck(const truck &truck) {
     return toAdd;
 }
 
-bool secondScenario::insertLoadless(request requestToInsert, loadLessTruck &truckToInsert) {
-    if(requestToInsert.weight <= truckToInsert.maxWeight && requestToInsert.volume <= truckToInsert.maxVolume){
-        truckToInsert.maxWeight -= requestToInsert.weight;
-        truckToInsert.maxVolume -= requestToInsert.volume;
-        return true;
-    }
-    return false;
-}
-
 void secondScenario::printResult(unsigned int maximumValue) {
     cout << "-*-------------  Report Scenario 2  ------------------*-" << endl;
     cout << " |--> Truck Details: " << endl;
@@ -302,7 +291,6 @@ void secondScenario::printComputationTime(chrono::duration<double> elapsed_secon
     cout << " |        Finished Computation At: " << std::ctime(&end_time);
     cout << "-*----------------------------------------------------*-" << endl;
 }
-
 
 void secondScenario::printOnlyMax(unsigned int maximum) {
     cout << "-*-------------  Scenario 2 --------------------------*-" << endl;
@@ -330,6 +318,7 @@ void secondScenario::exportResult(unsigned int maximum) {
         file << " |        Remaining Volume : " << truck.maxVolume << endl;
         file << " |        Remaining Weight : " << truck.maxWeight << endl;
         file << " |        Cost : " << truck.cost << endl;
+        file << " |        Profit : " << truck.profit << endl;
         file << " |        --> Distribution : (Volume,Weight,Reward)" << endl;
         for(const auto &request : truck.truckLoad){
             file << " |                " << request.volume << " " << request.weight << " " << request.reward << endl;

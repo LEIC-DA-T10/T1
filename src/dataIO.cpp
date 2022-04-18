@@ -60,8 +60,12 @@ bool dataIO::readTrucksFixed(int start, int finish) {
         getline(file,stringBuffer);
     }
 
-    //TODO clear trucks correctly
-    if(!trucks.empty()) trucks.clear();
+    if(!trucks.empty()){
+        for(auto truck : trucks){
+            truck.truckLoad.clear();
+        }
+        trucks.clear();
+    }
 
     while(getline(file,stringBuffer) && counter < (finish-start)){
         vector<string> splitString = split(stringBuffer," ");
@@ -119,8 +123,12 @@ bool dataIO::readTrucksRandom(int n) {
     file.open(truckPath, ios::in);
     if(!file) return false;
 
-    //TODO clear trucks correctly
-    if(!trucks.empty()) trucks.clear();
+    if(!trucks.empty()){
+        for(auto truck : trucks){
+            truck.truckLoad.clear();
+        }
+        trucks.clear();
+    }
     set<unsigned int> randomIndexes = generateRandomSet(n,numberTrucks);
 
     while(getline(file,stringBuffer) && counter < numberTrucks){

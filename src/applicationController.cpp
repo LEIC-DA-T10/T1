@@ -13,24 +13,31 @@ applicationController::applicationController() {
 bool applicationController::run() {
     switch (state) {
         case 1:
+         //   system ("CLS");
             readFixed();
             return true;
         case 2:
+         //   system ("CLS");
             readRandom();
             return true;
         case 3:
+          //  system ("CLS");
             computeFirst();
             return true;
         case 4:
+      //      system ("CLS");
             computeSecond();
             return true;
         case 5:
+          //  system ("CLS");
             computeThird();
             return true;
         case 6:
+        //    system ("CLS");
             printRequest();
             return true;
         case 7:
+       //     system ("CLS");
             printTruck();
             return true;
         default:
@@ -43,35 +50,35 @@ void applicationController::setState(int new_state) {
 }
 
 void applicationController::printMainMenu(){
-    cout << "---- Getting Input ----" << endl;
-    cout << "1 - Fixed input from dataset from Indexes" << endl;
-    cout << "2 - Random input from dataset" << endl;
-    cout << "---- Computing Scenarios ----" << endl;
-    cout << "3 - Compute Scenario 1" << endl;
-    cout << "4 - Compute Scenario 2" << endl;
-    cout << "5 - Compute Scenario 3" << endl;
-    cout << "---- Printing Data ----" << endl;
-    cout << "6 - Print Request Dataset" << endl;
-    cout << "7 - Print Truck Dataset" << endl;
-    cout << "---- Exit ----" << endl;
-    cout << "0 - Exit application" << endl;
+    cout << "-*-------------  Main Menu  --------------------------*-" << endl;
+    cout << " |--> Input: " << endl;
+    cout << " |        1 - Fixed input from dataset " << endl;
+    cout << " |        2 - Random input from dataset " << endl;
+    cout << " |--> Computing Scenarios: " << endl;
+    cout << " |        3 - Compute Scenario 1 " << endl;
+    cout << " |        4 - Compute Scenario 2"  << endl;
+    cout << " |        5 - Compute Scenario 3"  << endl;
+    cout << " |--> Printing Data: " << endl;
+    cout << " |        6 - Print Request Dataset "<< endl;
+    cout << " |        7 - Print Truck Dataset: " << endl;
+    cout << " |--> Exit " << endl;
+    cout << " |        0 - Exit application "<< endl;
+    cout << "-*----------------------------------------------------*-" << endl;
 }
-
 
 void applicationController::readFixed() {
     int startingIndex, endingIndex;
-
     cout << "---- Truck Dataset ----" << endl;
-    cout << "Starting Index [0,"<< data.getNumberTrucks() <<"] : " << endl;
+    cout << "Starting Index [0,"<< data.getNumberTrucks()-1 <<"] : " << endl;
     cin >> startingIndex;
-    cout << "Ending Index [" << startingIndex << "," << data.getNumberTrucks() <<"] : " << endl;
+    cout << "Ending Index [" << startingIndex << "," << data.getNumberTrucks()-1 <<"] : " << endl;
     cin >> endingIndex;
     data.readTrucksFixed(startingIndex,endingIndex);
 
     cout << "---- Request Dataset ----" << endl;
-    cout << "Starting Index [0,"<< data.getNumberRequests() <<"] : " << endl;
+    cout << "Starting Index [0,"<< data.getNumberRequests()-1 <<"] : " << endl;
     cin >> startingIndex;
-    cout << "Ending Index [" << startingIndex << "," << data.getNumberRequests() <<"] : " << endl;
+    cout << "Ending Index [" << startingIndex << "," << data.getNumberRequests()-1 <<"] : " << endl;
     cin >> endingIndex;
     data.readRequestsFixed(startingIndex,endingIndex);
     cout << "---- Finished reading data ----" << endl;
@@ -79,7 +86,6 @@ void applicationController::readFixed() {
 
 void applicationController::readRandom() {
     int number;
-
     cout << "---- Truck Dataset ----" << endl;
     cout << "Number of Random Trucks : [1,"<< data.getNumberTrucks() <<"] : " << endl;
     cin >> number;
@@ -90,7 +96,6 @@ void applicationController::readRandom() {
     data.readRequestsRandom(number);
     cout << "---- Finished reading data ----" << endl;
 }
-
 
 void applicationController::printTruck() {
     char answer;
@@ -107,7 +112,6 @@ void applicationController::printRequest() {
     cin >> answer;
     data.printRequests(answer);
 }
-
 
 void applicationController::computeFirst() {
     if(checkForEmpty(data.getRequests()) || checkForEmpty(data.getTrucks())) return;
