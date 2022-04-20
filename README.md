@@ -2,7 +2,7 @@
 First delivery for the subject "Developing Algorithms"
 
 
-## First Algorithm Description ("")
+## First Algorithm Description ("Minimização do Número de Estafetas")
 ## Second Algorithm Description ("")
 ## Third Algorithm Description ("otimização das entregas expresso")
 
@@ -10,4 +10,4 @@ First delivery for the subject "Developing Algorithms"
 # Self-Avaluation
  * 33% [(@InsertNamePls) | 202005827 | José Carvalho](https://github.com/InsertNamePls) 
  * 33% [(@eduardo-mdc ) | 201909914 | Eduardo Correia](https://github.com/eduardo-mdc) 
- * 33% [(@eduardo-mdc ) | 201909914 | Eduardo Correia](https://github.com/eduardo-mdc)
+ * 33% [(@up201604906 ) | 201604906 | Carlos Madaleno](https://github.com/up201604906)
