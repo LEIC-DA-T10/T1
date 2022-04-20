@@ -15,6 +15,9 @@ struct truck{
     unsigned int maxVolume;
     unsigned int maxWeight;
     unsigned int cost;
+    unsigned int availableWeight;
+    unsigned int availableVolume;
+    unsigned int availableTime = 86400;
     unsigned int profit;
     std::vector<request> truckLoad;
 };

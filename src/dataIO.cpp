@@ -74,6 +74,8 @@ bool dataIO::readTrucksFixed(int start, int finish) {
         truckBuffer.maxVolume = stoi(splitString.at(0));
         truckBuffer.maxWeight = stoi(splitString.at(1));
         truckBuffer.cost = stoi(splitString.at(2));
+        truckBuffer.availableWeight = truckBuffer.maxWeight;
+        truckBuffer.availableVolume = truckBuffer.maxVolume;
 
         trucks.push_back(truckBuffer);
         counter++;
