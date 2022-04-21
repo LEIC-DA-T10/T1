@@ -8,9 +8,9 @@
 #include <iostream>
 #include <algorithm>
 
+
 firstScenario::firstScenario(vector<request> requests, vector<truck> trucks) : abstractAlgorithm(requests, trucks) {}
 
-//Main Computing Function
 void firstScenario::compute() {
     int response = printMenu();
     vector<truck> a, b;

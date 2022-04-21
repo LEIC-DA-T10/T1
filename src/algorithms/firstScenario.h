@@ -10,6 +10,11 @@
 
 class firstScenario : abstractAlgorithm{
 public:
+    /**
+     * Constructor for the firstScenario class, receives a request and truck vector that are used to compute the algorithms.
+     * @param requests request vector.
+     * @param trucks truck vector.
+     */
     firstScenario(vector<request> requests, vector<truck> trucks);
     void compute() override;
     vector<truck> execute(vector<truck> trucks);
