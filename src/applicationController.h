@@ -91,7 +91,6 @@ public:
      * Compares the 2 alternative algorithms for the second scenario.
      */
     static void compareSecond();
-    void computeThird_();
 };
 
 

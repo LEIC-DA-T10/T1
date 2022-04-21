@@ -29,9 +29,7 @@ public:
     void compute() override;
     vector<request> fitsTruck();
     bool isDeliverable(int i) const;
-
     int knapSack(int W, vector<request>, int n);
-
     int knapSackRec(int W, vector<request> wt, int i, int **dp);
 };
 
