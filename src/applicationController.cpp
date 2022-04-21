@@ -63,7 +63,7 @@ void applicationController::printMainMenu(){
     cout << " |        5 - Compute Scenario 3"  << endl;
     cout << " |--> Printing Data: " << endl;
     cout << " |        6 - Print Request Dataset "<< endl;
-    cout << " |        7 - Print Truck Dataset: " << endl;
+    cout << " |        7 - Print Truck Dataset " << endl;
     cout << " |--> Statistics: " << endl;
     cout << " |        8 - Compare both scenario 2 algorithms "<< endl;
     cout << " |--> Exit " << endl;

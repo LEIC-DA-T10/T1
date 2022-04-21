@@ -196,6 +196,10 @@ public:
      * Used to ask which algorithm the user wants to use. Also handles the overall flow of the class.
      */
     void compute() override;
+    /**
+     * Compares both algorithms and writes the average difference to the terminal
+     * @param number number of iterations.
+     */
     void compare(int number);
 };
 #endif //DA_T1_SECONDSCENARIO_H
