@@ -28,6 +28,10 @@ public:
      */
     abstractAlgorithm(const vector<request>& requests,const vector<truck>& trucks);
     /**
+     * Empty Constructor for the abstract algorithm class, used in the compare option.
+     */
+    abstractAlgorithm();
+    /**
      * Pure virtual function used to guarantee that any child class also has the compute function.
      */
     virtual void compute() = 0;

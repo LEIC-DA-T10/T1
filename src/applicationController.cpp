@@ -40,6 +40,9 @@ bool applicationController::run() {
        //     system ("CLS");
             printTruck();
             return true;
+        case 8:
+            compareSecond();
+            return true;
         default:
             return false;
     }
@@ -60,7 +63,9 @@ void applicationController::printMainMenu(){
     cout << " |        5 - Compute Scenario 3"  << endl;
     cout << " |--> Printing Data: " << endl;
     cout << " |        6 - Print Request Dataset "<< endl;
-    cout << " |        7 - Print Truck Dataset: " << endl;
+    cout << " |        7 - Print Truck Dataset " << endl;
+    cout << " |--> Statistics: " << endl;
+    cout << " |        8 - Compare both scenario 2 algorithms "<< endl;
     cout << " |--> Exit " << endl;
     cout << " |        0 - Exit application "<< endl;
     cout << "-*----------------------------------------------------*-" << endl;
@@ -114,7 +119,7 @@ void applicationController::printRequest() {
 }
 
 void applicationController::computeFirst() {
-    if(checkForEmpty(data.getRequests()) || checkForEmpty(data.getTrucks())) return;
+    if(checkForEmpty(data.getRequests()) || checkForEmpty(data.getTrucks())) return;    // Verificacao se vecs vazios
     firstScenario algorithm(data.getRequests(),data.getTrucks());
     algorithm.compute();
 }
@@ -145,6 +150,18 @@ bool applicationController::checkForEmpty(const vector<truck>& vector){
         return true;
     }
     return false;
+}
+
+void applicationController::compareSecond() {
+    int number;
+    cout << "How many iterations do you want to compute ?" << endl;
+    cin >> number;
+    if(number < 1){
+        cout << "ERROR : Invalid number of iterations" << endl;
+        return;
+    }
+    secondScenario algorithm;
+    algorithm.compare(number);
 }
 
 
