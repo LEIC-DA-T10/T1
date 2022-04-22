@@ -49,10 +49,13 @@ When the user executes the program, they are greeted by a main menu.
     * 8.1 - Choose Number of Iterations
 
 ## Dependencies
-> The program requires the existance of 2 dataset files to read from (carrinhas.txt and encomendas.txt). These should be located in the data/input/ folder, starting from the root of your project. 
+> The program requires the existance of 2 dataset files to read from (**carrinhas.txt** and **encomendas.txt**). These should be located in the **data/input/** folder, starting from the root of your project. 
 
-> Output files are written to the data/output/ file from the root of your project. 
+> Output files are written to the **data/output/** file from the root of your project. 
 
+## GitHub Repository
+
+The project was developed using github, the link to the repository can be found [here](https://github.com/LEIC-DA-T10/T1)
 
 # Self-Avaluation
  * 33% [(@InsertNamePls) | 202005827 | José Carvalho](https://github.com/InsertNamePls) 
