@@ -38,7 +38,7 @@ When the user executes the program, they are greeted by a main menu.
     * 4.2 - Compute Backtracking
 * 5 - Compute Scenario 3
     * 5.1 - Compute Greedy
-        * 5.1.1 - See Truck Distrubution Details
+        * 5.1.1 - See Truck Distribution Details
     * 5.2 - Compute Backtracking
 * 6 - Print Read Request Data
     * 6.1 - Print to a file
