@@ -26,10 +26,11 @@ When the user executes the program, they are greeted by a main menu.
 * 1 - Reading Fixed data from the dataset.
 * 2 - Reading Random data from the dataset.
 * 3 - Compute Scenario 1
-    * 3.1 - Sort By Weight
-    * 3.2 - Sort By Volume  
-    * 3.3 - Sort By Time
-    * 3.4 - Sort by best option
+    * 3.1 - No Sorting
+    * 3.2 - Sort By Weight
+    * 3.3 - Sort By Volume  
+    * 3.4 - Sort By Time
+    * 3.5 - Sort by best option
 * 4 - Compute Scenario 2
     * 4.1 - Compute Greedy
         * 4.1.1 - Export Truck Distribution to File
